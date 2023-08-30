@@ -19,21 +19,14 @@ func main() {
 		log.Panic("Error:", err)
 	}
 
-	//read file with rune mappings
-	tokenFile := "token.tkn"
-	token, err := os.ReadFile(tokenFile)
-	if err != nil {
-		log.Panic("Error:", err)
-	}
-
 	var data map[int]int
 
 	err = yaml.Unmarshal(mapping, &data)
 	if err != nil {
 		log.Panic(err)
 	}
-
-	bot, err := tgbotapi.NewBotAPI(string(token))
+	//ad yout tgBot token
+	bot, err := tgbotapi.NewBotAPI("token")
 	if err != nil {
 		log.Panic(err)
 	}
