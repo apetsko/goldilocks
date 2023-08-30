@@ -26,7 +26,7 @@ func main() {
 	if err != nil {
 		log.Panic(err)
 	}
-	//ad yout tgBot token
+	//add your tgBot token
 	bot, err := tgbotapi.NewBotAPI("token")
 	if err != nil {
 		log.Panic(err)
