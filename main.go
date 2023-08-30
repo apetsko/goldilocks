@@ -50,7 +50,7 @@ func main() {
 			continue
 		}
 
-		log.Printf("Chat.ID:%d [%s:%d] %s\n", update.Message.Chat.ID, update.Message.From.UserName, update.Message.From.ID, update.Message.Text)
+		log.Printf("[%s:%d] %s\n", update.Message.From.UserName, update.Message.From.ID, update.Message.Text)
 
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, remapString(update.Message.Text, data))
 
