@@ -7,7 +7,8 @@
 *.dll
 *.so
 *.dylib
-
+symbols.txt
+tempCodeRunnerFile.go
 # Test binary, built with `go test -c`
 *.test
 
@@ -19,3 +20,6 @@
 
 # Go workspace file
 go.work
+
+#tetelram Bot token
+token.tkn
