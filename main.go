@@ -19,7 +19,7 @@ func main() {
 		log.Panic("Error:", err)
 	}
 
-	//read file with rune mappings
+	//read file with telegram Bot Token string
 	tokenFile := "token.tkn"
 	token, err := os.ReadFile(tokenFile)
 	if err != nil {
