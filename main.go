@@ -19,6 +19,7 @@ func main() {
 		log.Panic("Error:", err)
 	}
 
+
 	var data map[int]int
 
 	err = yaml.Unmarshal(mapping, &data)
