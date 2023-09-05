@@ -1,9 +1,12 @@
 package main
 
 import (
+	"errors"
+	"fmt"
+	"io"
 	"log"
+	"net/http"
 	"os"
-
 	"strings"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
@@ -11,6 +14,19 @@ import (
 )
 
 func main() {
+	//mock listen for fl0.com deploy
+	port := os.Getenv("PORT")
+	go func() {
+		http.HandleFunc("/", getHello)
+		err := http.ListenAndServe(port, nil)
+		if errors.Is(err, http.ErrServerClosed) {
+			fmt.Printf("server closed\n")
+		} else if err != nil {
+			fmt.Printf("error starting server: %s\n", err)
+			os.Exit(1)
+		}
+	}()
+
 	token := os.Getenv("tgtoken")
 	var data map[int]int
 
@@ -43,6 +59,7 @@ func main() {
 
 		bot.Send(msg)
 	}
+
 }
 
 // remapString сhanges characters according to the data specified in the mapping.map file
@@ -181,3 +198,8 @@ var mapping = []byte(`#eng start
 1102: 985
 1103: 1126
 #rus end`)
+
+func getHello(w http.ResponseWriter, r *http.Request) {
+	log.Println("got / request")
+	io.WriteString(w, "Hello, I'm https://t.me/zolotovoloska_bot!\n")
+}
