@@ -18,7 +18,7 @@ func main() {
 	port := os.Getenv("PORT")
 	go func() {
 		http.HandleFunc("/", getHello)
-		err := http.ListenAndServe(port, nil)
+		err := http.ListenAndServe(":"+port, nil)
 		if errors.Is(err, http.ErrServerClosed) {
 			fmt.Printf("server closed\n")
 		} else if err != nil {
